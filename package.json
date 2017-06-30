@@ -10,9 +10,12 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
+    "feathers": "^2.1.4",
+    "feathers-rest": "^1.7.4",
     "isomorphic-unfetch": "^1.0.0",
     "material-ui": "^0.18.4",
     "next": "^2.4.5",
+    "node-fetch": "^1.7.1",
     "nprogress": "^0.2.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",

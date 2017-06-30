@@ -1,9 +1,7 @@
 import React from 'react';
 import { List, ListItem } from 'material-ui/List';
 import ActionGrade from 'material-ui/svg-icons/action/grade';
-import ContentInbox from 'material-ui/svg-icons/content/inbox';
-import ContentDrafts from 'material-ui/svg-icons/content/drafts';
-import ContentSend from 'material-ui/svg-icons/content/send';
+import ActionTrendingDown from 'material-ui/svg-icons/action/trending-down';
 import Subheader from 'material-ui/Subheader';
 import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
@@ -53,47 +51,8 @@ class MyDrawer extends React.Component {
         onRequestChange={open => this.props.onRequestChange(open, isdocked)}
       >
         <List>
-          <Subheader>Nested List Items</Subheader>
-          <ListItem primaryText="Sent mail" leftIcon={<ContentSend />} />
-          <ListItem primaryText="Drafts" leftIcon={<ContentDrafts />} />
-          <ListItem
-            primaryText="Inbox"
-            leftIcon={<ContentInbox />}
-            initiallyOpen={true}
-            primaryTogglesNestedList={true}
-            nestedItems={[
-              <ListItem
-                key={1}
-                primaryText="Starred"
-                leftIcon={<ActionGrade />}
-              />,
-              <ListItem
-                key={2}
-                primaryText="Sent Mail"
-                leftIcon={<ContentSend />}
-                disabled={true}
-                nestedItems={[
-                  <ListItem
-                    key={1}
-                    primaryText="Drafts"
-                    leftIcon={<ContentDrafts />}
-                  />
-                ]}
-              />,
-              <ListItem
-                key={3}
-                primaryText="Inbox"
-                leftIcon={<ContentInbox />}
-                nestedItems={[
-                  <ListItem
-                    key={1}
-                    primaryText="Drafts"
-                    leftIcon={<ContentDrafts />}
-                  />
-                ]}
-              />
-            ]}
-          />
+          <Subheader>导航</Subheader>
+          <ListItem primaryText="降价榜" leftIcon={<ActionTrendingDown />} />          
         </List>
       </Drawer>
     );
@@ -139,12 +98,12 @@ export default class MyComponent extends React.Component {
             position: 'fixed'
           }}
           onLeftIconButtonTouchTap={this.handleToggle}
-          title="YoLo"
-          iconElementRight={
+          title={this.props.title}
+          /*iconElementRight={
             <Avatar size={40} style={style}>
               A
             </Avatar>
-          }
+          }*/
         />
         <style>
           {
