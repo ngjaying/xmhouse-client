@@ -8,33 +8,30 @@ import * as stores from '../stores';
 import * as actions from '../actions';
 import { Provider, observer, inject } from 'mobx-react';
 
-@inject('historyStore') @observer
-class ReductionPage extends React.Component {
+@inject('statisticStore') @observer
+class IndexPage extends React.Component {
 
   componentDidMount() {
-    actions.fetchReduction();
+    Promise.all([
+      actions.fetchTotalCount(),
+      actions.fetchIncreaseCount(),
+      actions.fetchNewCount(),
+      actions.fetchReductionCount(),
+    ]);    
   }
 
   render() {
     return (
-      <AppLayout title="厦门房事">
-        {this.props.historyStore.histories.map((show) => (
-          <Card>
-            {/*<CardHeader
-          title="URL Avatar"
-          subtitle="Subtitle"
-        />    */}
-            <CardTitle title={show.plotname} subtitle={show.district} />
-            <CardText>
-              <div>降价<b>{show.deltaprice}</b></div>
-              <p>{show.block}</p>
-              <p>总价：{show.price}万&nbsp;&nbsp;单价：{show.unitprice}万</p>
-            </CardText>
-            <CardActions>
-              <RaisedButton label="查看" href={`https://xm.lianjia.com/ershoufang/${show.houseid}.html`} />
-            </CardActions>
-          </Card>
-        ))}
+      <AppLayout title="厦门房事">        
+        <Card>          
+          <CardTitle title='今日更新' />
+          <CardText>
+            <div>在售<b>{this.props.statisticStore.totalCount}</b>套</div>
+            <div>新上<b>{this.props.statisticStore.newCount}</b>套</div>
+            <div>涨价<b>{this.props.statisticStore.increaseCount}</b>套</div>
+            <div>降价<b>{this.props.statisticStore.reductionCount}</b>套</div>
+          </CardText>          
+        </Card>
       </AppLayout>);
   }
 }
@@ -47,7 +44,7 @@ class Index extends React.Component {
   render() {
     return (
       <Provider {...stores}>
-        <ReductionPage />
+        <IndexPage />
       </Provider>
     )
   }

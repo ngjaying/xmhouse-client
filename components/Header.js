@@ -10,7 +10,7 @@ Router.onRouteChangeStart = (url) => {
 Router.onRouteChangeComplete = () => NProgress.done()
 Router.onRouteChangeError = () => NProgress.done()
 
-export default ({ title = 'Nextjs Material-ui example' }) => (
+export default ({ title = '厦门房事' }) => (
   <div>
     <Head>
       <title>{title}</title>
