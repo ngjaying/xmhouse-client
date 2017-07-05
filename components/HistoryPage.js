@@ -1,23 +1,37 @@
 import React from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
-import withMaterial from '../hocs/withMaterial';
 import AppLayout from '../components/AppLayout';
 import Layout from '../components/Layout';
+import RaisedButton from 'material-ui/RaisedButton';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
-import * as stores from '../stores';
+import { observer, inject } from 'mobx-react';
 import * as actions from '../actions';
-import { Provider, observer, inject } from 'mobx-react';
 
 @inject('historyStore') @observer
-class ReductionPage extends React.Component {
+export default class HistoryPage extends React.Component {
 
   componentDidMount() {
-    actions.fetchReduction();
+    if (this.props.historyStore.histories.length == 0) {
+      if (this.props.type == 'reduction') {
+        actions.fetchReduction();
+      } else if (this.props.type == 'increase') {
+        actions.fetchIncrease();
+      } else if (this.props.type == 'highesetPrice') {
+        actions.fetchHighestPrice();
+      } else if (this.props.type == 'lowestPrice') {
+        actions.fetchLowestPrice();
+      } else if (this.props.type == 'highestUnitPrice') {
+        actions.fetchHighestUnitPrice();
+      } else if (this.props.type == 'lowestUnitPrice') {
+        actions.fetchLowestUnitPrice();
+      } else {
+        console.log('error link');
+      }
+    }
   }
 
   render() {
     return (
-      <AppLayout title="厦门房事">
+      <AppLayout title="房子列表">
         {this.props.historyStore.histories.map((show) => (
           <Card>
             {/*<CardHeader
@@ -38,19 +52,3 @@ class ReductionPage extends React.Component {
       </AppLayout>);
   }
 }
-
-class Index extends React.Component {
-  static getInitialProps({ req }) {
-
-  }
-
-  render() {
-    return (
-      <Provider {...stores}>
-        <ReductionPage />
-      </Provider>
-    )
-  }
-}
-
-export default withMaterial(Index);

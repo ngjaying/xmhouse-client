@@ -1,23 +1,26 @@
 import { observable, action } from 'mobx';
 
 class HistoryStore {
-    @observable histories;
+  @observable histories;
 
-    constructor(){
-        this.histories = [];
-    }
-   
+  constructor() {
+    this.histories = [];
+  }
 
-    @action set = (newHistories) => {
-      this.histories = [];
-      this.merge(newHistories);
-    }
+  @action reset = () => {
+    this.histories = [];
+  }
 
-    @action merge = (newHistories) => {
-        newHistories.forEach(function(element) {
-            this.histories.push(element);
-        }, this);
-    }
+  @action set = (newHistories) => {
+    this.histories = [];
+    this.merge(newHistories);
+  }
+
+  @action merge = (newHistories) => {
+    newHistories.forEach(function (element) {
+      this.histories.push(element);
+    }, this);
+  }
 
 }
 

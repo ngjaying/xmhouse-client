@@ -3,6 +3,10 @@ import { List, ListItem } from 'material-ui/List';
 import ActionTrackChanges from 'material-ui/svg-icons/action/track-changes';
 import ActionTrendingDown from 'material-ui/svg-icons/action/trending-down';
 import ActionTrendingUp from 'material-ui/svg-icons/action/trending-up';
+import ImageBrightness1 from 'material-ui/svg-icons/image/brightness-1';
+import ImageBrightness3 from 'material-ui/svg-icons/image/brightness-3';
+import ImageBrightness4 from 'material-ui/svg-icons/image/brightness-4';
+import ImageBrightness5 from 'material-ui/svg-icons/image/brightness-5';
 import Subheader from 'material-ui/Subheader';
 import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
@@ -10,7 +14,8 @@ import Avatar from 'material-ui/Avatar';
 import Header from './Header';
 import NoSSR from 'react-no-ssr';
 import MediaQuery from 'react-responsive';
-import Link from 'next/link'
+import Link from 'next/link';
+import * as actions from '../actions';
 let classNames = require('classnames');
 
 const style = { margin: 4 };
@@ -57,10 +62,24 @@ class MyDrawer extends React.Component {
             <ListItem primaryText="每日状态" leftIcon={<ActionTrackChanges />} />   
           </Link>
           <Subheader>链家数据</Subheader>
-          <Link href='/reduction'>
-            <ListItem primaryText="降价榜" leftIcon={<ActionTrendingDown />} />
+          <Link href='/historyList?type=reduction'>
+            <ListItem primaryText="降价榜" leftIcon={<ActionTrendingDown />} onTouchTap={actions.fetchReduction} />
           </Link>
-          <ListItem primaryText="涨价榜" leftIcon={<ActionTrendingUp />} />         
+          <Link href='/historyList?type=increase'>
+            <ListItem primaryText="涨价榜" leftIcon={<ActionTrendingUp />}  onTouchTap={actions.fetchIncrease} />
+          </Link>
+          <Link href='/historyList?type=highestPrice'>
+            <ListItem primaryText="总价最高" leftIcon={<ImageBrightness1 />}  onTouchTap={actions.fetchHighestPrice} />
+          </Link>
+          <Link href='/historyList?type=lowestPrice'>
+            <ListItem primaryText="总价最低" leftIcon={<ImageBrightness3 />}  onTouchTap={actions.fetchLowestPrice} />
+          </Link>
+          <Link href='/historyList?type=highestUnitPrice'>
+            <ListItem primaryText="单价最高" leftIcon={<ImageBrightness5 />}  onTouchTap={actions.fetchHighestUnitPrice} />
+          </Link>
+          <Link href='/historyList?type=lowestUnitPrice'>
+            <ListItem primaryText="单价最低" leftIcon={<ImageBrightness4 />}  onTouchTap={actions.fetchLowestUnitPrice} />
+          </Link>
         </List>
       </Drawer>
     );
