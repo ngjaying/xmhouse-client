@@ -1,7 +1,8 @@
 import React from 'react';
 import { List, ListItem } from 'material-ui/List';
-import ActionGrade from 'material-ui/svg-icons/action/grade';
+import ActionTrackChanges from 'material-ui/svg-icons/action/track-changes';
 import ActionTrendingDown from 'material-ui/svg-icons/action/trending-down';
+import ActionTrendingUp from 'material-ui/svg-icons/action/trending-up';
 import Subheader from 'material-ui/Subheader';
 import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
@@ -9,7 +10,8 @@ import Avatar from 'material-ui/Avatar';
 import Header from './Header';
 import NoSSR from 'react-no-ssr';
 import MediaQuery from 'react-responsive';
-var classNames = require('classnames');
+import Link from 'next/link'
+let classNames = require('classnames');
 
 const style = { margin: 4 };
 
@@ -51,8 +53,14 @@ class MyDrawer extends React.Component {
         onRequestChange={open => this.props.onRequestChange(open, isdocked)}
       >
         <List>
-          <Subheader>导航</Subheader>
-          <ListItem primaryText="降价榜" leftIcon={<ActionTrendingDown />} />          
+          <Link href='/index'>
+            <ListItem primaryText="每日状态" leftIcon={<ActionTrackChanges />} />   
+          </Link>
+          <Subheader>链家数据</Subheader>
+          <Link href='/reduction'>
+            <ListItem primaryText="降价榜" leftIcon={<ActionTrendingDown />} />
+          </Link>
+          <ListItem primaryText="涨价榜" leftIcon={<ActionTrendingUp />} />         
         </List>
       </Drawer>
     );

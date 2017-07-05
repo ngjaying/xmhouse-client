@@ -17,20 +17,20 @@ class IndexPage extends React.Component {
       actions.fetchIncreaseCount(),
       actions.fetchNewCount(),
       actions.fetchReductionCount(),
-    ]);    
+    ]);
   }
 
   render() {
     return (
-      <AppLayout title="厦门房事">        
-        <Card>          
+      <AppLayout title="厦门房事">
+        <Card>
           <CardTitle title='今日更新' />
           <CardText>
             <div>在售<b>{this.props.statisticStore.totalCount}</b>套</div>
             <div>新上<b>{this.props.statisticStore.newCount}</b>套</div>
             <div>涨价<b>{this.props.statisticStore.increaseCount}</b>套</div>
             <div>降价<b>{this.props.statisticStore.reductionCount}</b>套</div>
-          </CardText>          
+          </CardText>
         </Card>
       </AppLayout>);
   }
